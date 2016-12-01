@@ -19,4 +19,17 @@ describe('TodoApp', () => {
     todoApp.handleAddTodo(todoText);
     expect(todoApp.state.todos[0].text).toBe(todoText);
   });
+
+  it('should update completed value when handleToggle called', () => {
+    var todoApp = TestUtils.renderIntoDocument(<TodoApp />);
+    todoApp.setState({todos:[{
+      id: 100,
+      text: 'Dummy text',
+      completed: false
+    }]});
+    expect(todoApp.state.todos[0].completed).toBe(false);
+    todoApp.handleToggle(100);
+    expect(todoApp.state.todos[0].completed).toBe(true);
+
+  });
 });
